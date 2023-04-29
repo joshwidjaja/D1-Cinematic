@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!--from https://webtips.dev/webtips/phaser/custom-fonts-in-phaser3-->
-    <link rel="preload" as="logoFont" href="assets/YatraOne-R" type="font/ttf"/>
+    <link rel="preload" as="logoFont" href="assets/YatraOne-Regular.ttf" type="font/ttf"/>
     <style>
         @font-face {
             font-family: logoFont;
@@ -23,13 +23,15 @@
                 this.load.image('logo', 'assets/noun-butterfly-576159.png');
             }
             create() {
-                let logo = this.add.image(200, 200, 'logo');
-                logo.setScale(0.25);
-                let name = this.add.text(300, 50, 'S. R. E. S.', {
+                let logo = this.add.image(200, 250, 'logo');
+                logo.setScale(0.45);
+                let name = this.add.text(350, 150, 'S. R.\nE. S.', {
                     color: 'black',
                     fontFamily: 'logoFont',
                     fontSize: 72,
                 });
+
+                
             }
         }
 
