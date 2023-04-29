@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--from https://webtips.dev/webtips/phaser/custom-fonts-in-phaser3-->
+    <link rel="preload" as="logoFont" href="assets/YatraOne-R" type="font/ttf"/>
+    <style>
+        @font-face {
+            font-family: logoFont;
+            src: url('assets/YatraOne-Regular.ttf');
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.js" integrity="sha512-H05oT7BAjM9Ai1IaFX9zr61NtE2e1P0MkTz3AZXBnseaJSAOt2FGMFJ+vVGutaJxEGA1jxUiYsTBYQNE08/Erw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         class Studio extends Phaser.Scene {
@@ -15,9 +23,12 @@
                 this.load.image('logo', 'assets/noun-butterfly-576159.png');
             }
             create() {
-                let logo = this.add.image(50, 50, 'logo');
+                let logo = this.add.image(200, 200, 'logo');
+                logo.setScale(0.25);
                 let name = this.add.text(300, 50, 'S. R. E. S.', {
                     color: 'black',
+                    fontFamily: 'logoFont',
+                    fontSize: 72,
                 });
             }
         }
@@ -38,7 +49,7 @@
             width: 640,
             height: 480,
             scene: [Studio, Loading, Title],
-            backgroundColor: '#ffffff',
+            backgroundColor: '#eeeeee',
         });
     </script>
 </head>
