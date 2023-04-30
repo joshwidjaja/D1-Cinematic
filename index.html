@@ -31,7 +31,62 @@
                     fontSize: 72,
                 });
 
-                
+                this.add.tween({
+                    targets: logo,
+                    alpha: {
+                        from: 0,
+                        to: 1,
+                    },
+                    x: {
+                        from: -100,
+                        to: 200,
+                    },
+                    duration: 1000,
+                });
+
+                this.add.tween({
+                    targets: name,
+                    alpha: {
+                        from: 0,
+                        to: 1,
+                    },
+                    x: {
+                        from: 600,
+                        to: 350,
+                    },
+                    duration: 1000,
+                });
+
+                this.time.delayedCall(3000, () => {
+                    let logoY = logo.y;
+                    let nameY = name.y;
+
+                    this.add.tween({
+                        targets: logo,
+                        y: {
+                            from: logoY,
+                            to: logoY + 400,
+                        },
+                        alpha: 0,
+                        duration: 1000,
+                    });
+
+                    this.add.tween({
+                        targets: name,
+                        y: {
+                            from: nameY,
+                            to: nameY + 400,
+                        },
+                        alpha: 0,
+                        duration: 1000,
+                    });
+                });
+
+                this.time.delayedCall(3500, () => {
+                    this.cameras.main.fadeOut(1000, 0,0,0);
+                });
+
+                this.scene.start('loading');
             }
         }
 
