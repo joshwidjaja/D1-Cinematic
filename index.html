@@ -84,9 +84,8 @@
 
                 this.time.delayedCall(3500, () => {
                     this.cameras.main.fadeOut(1000, 0,0,0);
+                    this.scene.start('loading');
                 });
-
-                this.scene.start('loading');
             }
         }
 
