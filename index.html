@@ -29,6 +29,8 @@
 
             preload() {
                 this.load.image('logo', 'assets/noun-butterfly-576159.png');
+                // https://www.thepolyglotdeveloper.com/2020/09/add-music-sounds-other-audio-phaser-game/
+                this.load.audio('silence', ['assets/Silence.mp3']);
             }
 
             create() {
@@ -66,6 +68,17 @@
                     duration: 1000,
                 });
 
+                let silence = this.sound.add('silence', {
+                    loop: false
+                });
+
+                /*// https://phaser.discourse.group/t/audiocontext-was-not-allowed-to-start/795
+                this.input.addDownCallback(function() {
+                    if (game.sound.context.state == 'suspended') {
+                        game.sound.context.resume();
+                    }
+                });*/
+
                 this.time.delayedCall(3000, () => {
                     let logoY = logo.y;
                     let nameY = name.y;
@@ -89,6 +102,8 @@
                         alpha: 0,
                         duration: 1000,
                     });
+
+                    silence.play();
                 });
 
                 this.time.delayedCall(3500, () => {
@@ -112,10 +127,15 @@
 
             create() {
                 this.cameras.main.setBackgroundColor('#000000');
-                let loadingText = this.add.text(100, 100, 'NOW LOADING...',  {
+                let loadingText = this.add.text(300, 410, 'NOW LOADING…',  {
                     fontFamily: 'loadingFont',
                     fontSize: 30,
                 });
+
+                let sun = this.add.image(550, 425, 'sun');
+                sun.setScale(0.15);
+
+                
             }
         }
 
