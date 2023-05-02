@@ -135,7 +135,13 @@
                 let sun = this.add.image(550, 425, 'sun');
                 sun.setScale(0.15);
 
-                
+                this.add.tween({
+                    targets: sun,
+                    angle: 360,
+                    ease: 'Elastic',
+                    duration: 2000,
+                    repeat: 1,
+                });
             }
         }
 
