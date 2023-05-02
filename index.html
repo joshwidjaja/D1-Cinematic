@@ -8,6 +8,8 @@
     <!--from https://webtips.dev/webtips/phaser/custom-fonts-in-phaser3-->
     <link rel="preload" as="logoFont" href="assets/YatraOne-Regular.ttf" type="font/ttf"/>
     <link rel="preload" as="loadingFont" href="assets/KosugiMaru-Regular.ttf" type="font/ttf"/>
+    <link rel="preload" as="titleFont" href="assets/GravitasOne-Regular.ttf" type="font/ttf"/>
+    <link rel="preload" as="menuFont" href="assets/SawarabiGothic-Regular.ttf" type="font/ttf"/>
     <!--https://stackoverflow.com/questions/51217147/how-to-use-a-local-font-in-phaser-3-->
     <style media="screen" type="text/css">
         @font-face {
@@ -18,6 +20,16 @@
         @font-face {
             font-family: "loadingFont";
             src: url('assets/KosugiMaru-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: "titleFont";
+            src: url('assets/GravitasOne-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: "menuFont";
+            src: url('assets/SawarabiGothic-Regular.ttf');
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.js" integrity="sha512-H05oT7BAjM9Ai1IaFX9zr61NtE2e1P0MkTz3AZXBnseaJSAOt2FGMFJ+vVGutaJxEGA1jxUiYsTBYQNE08/Erw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -142,12 +154,24 @@
                     duration: 2000,
                     repeat: 1,
                 });
+
+                this.time.delayedCall(4500, () => {
+                    this.scene.start('title');
+                });
             }
         }
 
         class Title extends Phaser.Scene {
             constructor() {
                 super('title');
+            }
+
+            preload() {
+                this.load.image('background', 'assets/higutown.jpeg');
+            }
+
+            create() {
+
             }
         }
 
