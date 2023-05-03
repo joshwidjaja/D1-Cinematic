@@ -168,9 +168,37 @@
 
             preload() {
                 this.load.image('background', 'assets/higutown.jpeg');
+                this.load.image('grayscale', 'assets/higugrey.jpeg');
             }
 
             create() {
+                let background = this.add.image(320, 240, 'background');
+                let grayscale = this.add.image(320, 240, 'grayscale');
+                grayscale.setAlpha(0);
+
+                this.add.tween({
+                    targets: background,
+                    alpha: {
+                        from: 0,
+                        to: 1,
+                    },
+                    duration: 100,
+                });
+
+                this.time.delayedCall(100, () => {
+                    this.add.tween({
+                        targets: grayscale,
+                        alpha: 1,
+                        duration: 500,
+                    });
+                });
+
+                let bubble = this.add.ellipse(200, 150, 300, 100, "#0c343d");
+                let titleText = this.add.text(200, 200, "Cicada Simulator 2K02", {
+                    fontFamily: 'titleFont',
+                    fontSize: 24,
+                });
+
 
             }
         }
@@ -178,7 +206,7 @@
         new Phaser.Game({
             width: 640,
             height: 480,
-            scene: [Studio, Loading, Title],
+            scene: [Title, Studio, Loading],
             backgroundColor: '#eeeeee',
         });
     </script>
