@@ -55,11 +55,16 @@
                 });
 
                 this.add.tween({
-                    targets: logo,
+                    targets: [logo, name],
                     alpha: {
                         from: 0,
                         to: 1,
                     },
+                    duration: 1000,
+                });
+
+                this.add.tween({
+                    targets: logo,
                     x: {
                         from: -100,
                         to: 200,
@@ -69,10 +74,6 @@
 
                 this.add.tween({
                     targets: name,
-                    alpha: {
-                        from: 0,
-                        to: 1,
-                    },
                     x: {
                         from: 600,
                         to: 350,
@@ -169,6 +170,7 @@
             preload() {
                 this.load.image('background', 'assets/higutown.jpeg');
                 this.load.image('grayscale', 'assets/higugrey.jpeg');
+                this.load.audio('cursor', ['assets/cursor reverse.mp3']);
             }
 
             create() {
@@ -185,6 +187,30 @@
                     duration: 100,
                 });
 
+                let bubble = this.add.ellipse(200, 150, 325, 100, 0x0c343d);
+                let titleText = this.add.text(200, 140, "Cicada Simulator 2K02", {
+                    fontFamily: 'titleFont',
+                    fontSize: 24,
+                });
+
+                this.add.tween({
+                    targets: bubble,
+                    x: {
+                        from: -100,
+                        to: 200,
+                    },
+                    duration: 500,
+                });
+
+                this.add.tween({
+                    targets: titleText,
+                    x: {
+                        from: 600,
+                        to: 100,
+                    },
+                    duration: 500,
+                });
+
                 this.time.delayedCall(100, () => {
                     this.add.tween({
                         targets: grayscale,
@@ -193,20 +219,46 @@
                     });
                 });
 
-                let bubble = this.add.ellipse(200, 150, 300, 100, "#0c343d");
-                let titleText = this.add.text(200, 200, "Cicada Simulator 2K02", {
-                    fontFamily: 'titleFont',
-                    fontSize: 24,
+                this.time.delayedCall(600, () => {
+                    let box = this.add.rectangle(320, 370, 200, 140, 0xeeeeee);
+                    this.add.tween({
+                        targets: box,
+                        y: {
+                            from: 500,
+                            to: 370,
+                        },
+                        duration: 500,
+                    });
                 });
 
+                this.time.delayedCall(1100, () => {
+                    let menu = this.add.text(240, 320, "Start\nReplays\nOptions", {
+                        fontFamily: 'menuFont',
+                        fontSize: 28,
+                        color: "#cf0000",
+                    });
 
+                    this.add.tween({
+                        targets: menu,
+                        x: {
+                            from: 0,
+                            to: 240,
+                        },
+                        duration: 300,
+                    });
+
+                    let cursor = this.sound.add('cursor', {
+                        loop: false,
+                    });
+                    cursor.play();
+                });
             }
         }
 
         new Phaser.Game({
             width: 640,
             height: 480,
-            scene: [Title, Studio, Loading],
+            scene: [Studio, Loading, Title],
             backgroundColor: '#eeeeee',
         });
     </script>
@@ -214,5 +266,7 @@
 <body>
     <div style="font-family: logoFont; position: absolute; left: -1000px; visibility: hidden;">.</div>
     <div style="font-family: loadingFont; position: absolute; left: -1000px; visibility: hidden;">.</div>
+    <div style="font-family: titleFont; position: absolute; left: -1000px; visibility: hidden;">.</div>
+    <div style="font-family: menuFont; position: absolute; left: -1000px; visibility: hidden;">.</div>
 </body>
 </html>
